@@ -12,7 +12,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: storage volume
+  name: storage-volume
 spec:
   containers:
     - name: nginx
