@@ -87,22 +87,18 @@ resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSNetworkingPolicy" {
   role       = aws_iam_role.cluster.name
 }
 resource "aws_iam_role" "node_group" {
- cluster_name    = aws_eks_cluster.example.name
-  node_group_name = "node_group1"
-  node_role_arn   = aws_iam_role.example.arn
-  subnet_ids      = [
-     "subnet-0a4f3e69dee139ca9", "subnet-0b0561e5654e35569"
-    ]
+  name = "eks-node-group-example"
 
-  scaling_config {
-    desired_size = 1
-    max_size     = 2
-    min_size     = 1
-  }
-
-  update_config {
-    max_unavailable = 1
-  }
+  assume_role_policy = jsonencode({
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+    Version = "2012-10-17"
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSWorkerNodePolicy" {
@@ -118,4 +114,24 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKS_CNI_Policy" {
 resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node_group.name
+}
+
+resource "aws_eks_node_group" "nodegroup_1" {
+  cluster_name    = aws_eks_cluster.example.name
+  node_group_name = "nodegroup_1"
+  node_role_arn   = aws_iam_role.example.arn
+  subnet_ids      =  [
+     "subnet-0a4f3e69dee139ca9", "subnet-0b0561e5654e35569"
+    ]
+
+  scaling_config {
+    desired_size = 1
+    max_size     = 2
+    min_size     = 1
+  }
+
+  update_config {
+    max_unavailable = 1
+  }
+  
 }
