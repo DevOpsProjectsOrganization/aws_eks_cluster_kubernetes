@@ -31,7 +31,7 @@ spec:
       ports:
         - containerPort: 80
   containers:
-    - name: rhel
-      image: rhel/ubi9
+    - name: nginx
+      image: nginx:1.14.2
       ports:
         - containerPort: 80
