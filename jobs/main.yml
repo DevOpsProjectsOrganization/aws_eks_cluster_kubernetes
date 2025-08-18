@@ -14,13 +14,18 @@ kind: Pod
 metadata:
   name: storage-volume
 spec:
-  initContainers:
-    - name: init-image
-      image: rkalluru/learnk8s:init-container-html-generator
+  # initContainers:
+  #   - name: init-image
+  #     image: rkalluru/learnk8s:init-container-html-generator
+  #     volumeMounts:
+  #       - name: empty
+  #         mountPath: /mnt/html
+  containers:
+    - name: side-car-container
+      image: rkalluru/learnk8s:side-car-html-generator
       volumeMounts:
         - name: empty
           mountPath: /mnt/html
-  containers:
     - name: nginx
       image: nginx:1.14.2
       volumeMounts:
