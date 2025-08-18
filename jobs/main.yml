@@ -15,7 +15,7 @@ metadata:
   name: storage-volume
 spec:
   initContainers:
-    - name: initImage
+    - name: init-image
       image: rkalluru/learnk8s:init-container-html-generator
       volumeMounts:
         - name: empty
