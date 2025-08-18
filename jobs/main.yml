@@ -18,7 +18,7 @@ spec:
     - name: nginx
       image: nginx:1.14.2
       volumeMounts:
-        - name: volume-1
+        - name: volume1
           mountPath: emptyDir
   volumes:
     - name: emptyDir
