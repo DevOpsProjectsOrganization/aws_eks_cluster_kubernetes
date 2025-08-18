@@ -19,7 +19,7 @@ spec:
       image: nginx:1.14.2
       volumeMounts:
         - name: volume1
-          mountPath: emptyDir
+          mountPath: /usr/share/nginx/html
   volumes:
     - name: emptyDir
       emptyDir: {}
