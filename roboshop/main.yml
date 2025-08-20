@@ -143,3 +143,57 @@ spec:
       containers:
         - name: payment
           image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
+---
+#schema load for shipping 3 jobs
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app-user
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          restartPolicy: Never
+  backoffLimit: 0
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: schema
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          restartPolicy: Never
+  backoffLimit: 0
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: master-data
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          restartPolicy: Never
+  backoffLimit: 0
+---
+#schema load for catalogue 1 job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: catalogue-schema-load
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          restartPolicy: Never
+  backoffLimit: 0
