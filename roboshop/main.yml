@@ -1,0 +1,145 @@
+#frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: frontend
+      project: roboshop
+    spec:
+      containers:
+        - name: frontend
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+
+---
+#catalogue
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+  labels:
+    app: catalogue
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalogue
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: catalogue
+      project: roboshop
+    spec:
+      containers:
+        - name: catalogue
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
+---
+#user
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  labels:
+    app: user
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: user
+      project: roboshop
+    spec:
+      containers:
+        - name: user
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+---
+#cart
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  labels:
+    app: cart
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: cart
+      project: roboshop
+    spec:
+      containers:
+        - name: cart
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+
+---
+#shipping
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  labels:
+    app: shipping
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: shipping
+      project: roboshop
+    spec:
+      containers:
+        - name: shipping
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+---
+#payment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    app: payment
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        app: payment
+      project: roboshop
+    spec:
+      containers:
+        - name: payment
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
