@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         app: frontend
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: frontend
@@ -25,7 +25,7 @@ spec:
             - configMapRef:
                 name: frontend
       restartPolicy: Never
-  backoffLimit: 0
+
 ---
 #catalogue
 apiVersion: apps/v1
@@ -45,7 +45,7 @@ spec:
     metadata:
       labels:
         app: catalogue
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: catalogue
@@ -54,7 +54,7 @@ spec:
             - configMapRef:
                 name: catalogue
       restartPolicy: Never
-  backoffLimit: 0
+
 ---
 #user
 apiVersion: apps/v1
@@ -74,7 +74,7 @@ spec:
     metadata:
       labels:
         app: user
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: user
@@ -83,7 +83,7 @@ spec:
             - configMapRef:
                 name: user
       restartPolicy: Never
-  backoffLimit: 0
+
 ---
 #cart
 apiVersion: apps/v1
@@ -103,7 +103,7 @@ spec:
     metadata:
       labels:
         app: cart
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: cart
@@ -112,7 +112,6 @@ spec:
             - configMapRef:
                 name: cart
       restartPolicy: Never
-  backoffLimit: 0
 
 ---
 #shipping
@@ -133,7 +132,7 @@ spec:
     metadata:
       labels:
         app: shipping
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: shipping
@@ -142,7 +141,7 @@ spec:
             - configMapRef:
                 name: shipping
       restartPolicy: Never
-  backoffLimit: 0
+
 ---
 #payment
 apiVersion: apps/v1
@@ -162,7 +161,7 @@ spec:
     metadata:
       labels:
         app: payment
-      project: roboshop
+        project: roboshop
     spec:
       containers:
         - name: payment
@@ -171,7 +170,7 @@ spec:
             - configMapRef:
                 name: payment
       restartPolicy: Never
-  backoffLimit: 0
+
 ---
 #schema load for shipping 3 jobs
 apiVersion: batch/v1
@@ -187,7 +186,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: shipping
-          restartPolicy: Never
+      restartPolicy: Never
   backoffLimit: 0
 ---
 apiVersion: batch/v1
@@ -203,7 +202,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: shipping
-          restartPolicy: Never
+      restartPolicy: Never
   backoffLimit: 0
 ---
 apiVersion: batch/v1
@@ -219,7 +218,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: shipping
-          restartPolicy: Never
+      restartPolicy: Never
   backoffLimit: 0
 ---
 #schema load for catalogue 1 job
@@ -236,5 +235,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: catalogue
-          restartPolicy: Never
+      restartPolicy: Never
   backoffLimit: 0
