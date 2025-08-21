@@ -67,7 +67,7 @@ data:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: configMapPod
+  name: config-map-pod
 spec:
   containers:
     - name: config-container
