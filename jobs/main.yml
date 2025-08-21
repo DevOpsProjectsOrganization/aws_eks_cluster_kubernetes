@@ -180,7 +180,7 @@ spec:
         - name: config-mount
           mountPath: /etc/nginx
   volumes:
-    - name: nginx-conf
+    - name: config-mount
       configMap:
         name: nginx-conf
   restartPolicy: Never
