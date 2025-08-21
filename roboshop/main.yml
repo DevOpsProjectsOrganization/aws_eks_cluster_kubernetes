@@ -169,7 +169,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: payment
-      restartPolicy: Never
+      restartPolicy: "Always"
 
 ---
 #schema load for shipping 3 jobs
