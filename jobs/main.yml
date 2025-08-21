@@ -64,7 +64,7 @@ data:
   player-lives: "3"
   ui_filename: "user-interface"
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Pod
 metadata:
   name: configMapPod
