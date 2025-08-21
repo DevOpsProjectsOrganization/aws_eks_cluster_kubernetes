@@ -74,12 +74,12 @@ spec:
       image: nginx:1.14.2
       env:
         - name: player-lives
-          valuesFrom:
+          valueFrom:
             configMapRef:
               name: config-map1
               key: player-lives
         - name: ui_filename
-          valuesFrom:
+          valueFrom:
             configMapRef:
               name: config-map1
               key: ui_filename
