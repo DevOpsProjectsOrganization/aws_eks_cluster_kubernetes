@@ -32,41 +32,41 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cart
-data: 
-  REDIS_HOST      :"redis-dev.sdevops.shop"   
-  CATALOGUE_HOST  :"catalogue-dev.sdevops.shop"   
-  CATALOGUE_PORT  : "8080"
+data:
+  REDIS_HOST: "redis-dev.sdevops.shop"
+  CATALOGUE_HOST: "catalogue-dev.sdevops.shop"
+  CATALOGUE_PORT: "8080"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: user
 data:
-  MONGO         : "true"   
-  REDIS_URL     : "redis://redis-dev.sdevops.shop:6379"   
-  MONGO_URL     : "mongodb://mongodb-dev.sdevops.shop:27017/users"
+  MONGO: "true"
+  REDIS_URL: "redis://redis-dev.sdevops.shop:6379"
+  MONGO_URL: "mongodb://mongodb-dev.sdevops.shop:27017/users"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: shipping
 data:
-  CART_ENDPOINT     : "cart-dev.sdevops.shop:8080"   
-  DB_HOST           : "mysql-dev.sdevops.shop"   
-  DB_TYPE           : "mysql"   
-  APP_GIT_URL       : "https://github.com/roboshop-devops-project-v3/shipping"   
-  DB_USER           : "root"   
-  DB_PASS           : "RoboShop@1"      
+  CART_ENDPOINT: "cart-dev.sdevops.shop:8080"
+  DB_HOST: "mysql-dev.sdevops.shop"
+  DB_TYPE: "mysql"
+  APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+  DB_USER: "root"
+  DB_PASS: "RoboShop@1"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: payment
 data:
-  CART_HOST     : "cart-dev.sdevops.shop"   
-  CART_PORT     :  "8080"   
-  USER_HOST     : "user-dev.sdevops.shop"   
-  USER_PORT     : "8080"   
-  AMQP_HOST     : "rabbitmq-dev.sdevops.shop"   
-  AMQP_USER     : "roboshop"   
-  AMQP_PASS     : "roboshop123"
+  CART_HOST: "cart-dev.sdevops.shop"
+  CART_PORT: "8080"
+  USER_HOST: "user-dev.sdevops.shop"
+  USER_PORT: "8080"
+  AMQP_HOST: "rabbitmq-dev.sdevops.shop"
+  AMQP_USER: "roboshop"
+  AMQP_PASS: "roboshop123"
