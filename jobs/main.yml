@@ -61,7 +61,7 @@ kind: ConfigMap
 metadata:
   name: config-map1
 data:
-  player-lives: 3
+  player-lives: "3"
   ui_filename: "user-interface"
 ---
 apiVersion: v1
