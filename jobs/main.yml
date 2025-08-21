@@ -56,30 +56,30 @@
 #         - name: nginx
 #           image: nginx
 
-apiVersion : v1
-kind : ConfigMap
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name : config-map1
+  name: config-map1
 data:
-  player-lives : 3
-  ui_filename : "user-interface"
-
-apiVersion : v1
-kind : Pod
-metadata :
-  name : configMapPod
+  player-lives: 3
+  ui_filename: "user-interface"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configMapPod
 spec:
   containers:
-  - name : config-container
-    image: nginx:1.14.2 
-    env :
-    - name : player-lives
-      valuesFrom: 
-        configMapRef:
-          name : config-map1
-          key : player-lives
-    - name : ui_filename
-      valuesFrom :
-        configMapRef:
-          name : config-map1
-          key : ui_filename
+    - name: config-container
+      image: nginx:1.14.2
+      env:
+        - name: player-lives
+          valuesFrom:
+            configMapRef:
+              name: config-map1
+              key: player-lives
+        - name: ui_filename
+          valuesFrom:
+            configMapRef:
+              name: config-map1
+              key: ui_filename
