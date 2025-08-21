@@ -96,4 +96,4 @@ spec:
       image: nginx:1.14
       envFrom:
         - configMapRef:
-          name: config-map1
+            name: config-map1
