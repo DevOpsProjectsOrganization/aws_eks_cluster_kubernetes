@@ -177,10 +177,10 @@ spec:
   containers:
     - name: conf-map-container
       volumeMounts:
-        name: config-mount
-        mountPath: /etc/nginx
+        - name: config-mount
+          mountPath: /etc/nginx
   volumes:
-    name: nginx-conf
-    configMap:
-      name: nginx-conf
+    - name: nginx-conf
+      configMap:
+        name: nginx-conf
   restartPolicy: never
