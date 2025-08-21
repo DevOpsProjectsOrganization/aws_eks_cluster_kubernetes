@@ -95,5 +95,5 @@ spec:
     - name: config-container-2
       image: nginx:1.14
       envFrom:
-        configMapRef:
+        - configMapRef:
           name: config-map1
