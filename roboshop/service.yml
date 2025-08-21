@@ -7,9 +7,9 @@ spec:
   selector:
     app: frontend
     project: roboshop
-ports:
-  - port: 80
-    targetPort: 80
+  ports:
+    - port: 80
+      targetPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -19,9 +19,9 @@ spec:
   selector:
     app: catalogue
     project: roboshop
-ports:
-  - port: 8080
-    targetPort: 8080
+  ports:
+    - port: 8080
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -31,9 +31,9 @@ spec:
   selector:
     app: user
     project: roboshop
-ports:
-  - port: 8080
-    targetPort: 8080
+  ports:
+    - port: 8080
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -43,9 +43,9 @@ spec:
   selector:
     app: cart
     project: roboshop
-ports:
-  - port: 8080
-    targetPort: 8080
+  ports:
+    - port: 8080
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -55,9 +55,9 @@ spec:
   selector:
     app: shipping
     project: roboshop
-ports:
-  - port: 8080
-    targetPort: 8080
+  ports:
+    - port: 8080
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -67,6 +67,6 @@ spec:
   selector:
     app: payment
     project: roboshop
-ports:
-  - port: 8080
-    targetPort: 8080
+  ports:
+    - port: 8080
+      targetPort: 8080
