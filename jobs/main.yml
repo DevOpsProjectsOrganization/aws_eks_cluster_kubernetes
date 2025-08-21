@@ -75,11 +75,11 @@ spec:
       env:
         - name: player-lives
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: config-map1
               key: player-lives
         - name: ui_filename
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: config-map1
               key: ui_filename
