@@ -83,3 +83,17 @@ spec:
             configMapKeyRef:
               name: config-map1
               key: ui_filename
+
+# sending all the config map values at a same time
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-2
+spec:
+  containers:
+    - name: config-container-2
+      image: nginx:1.14
+      envFrom:
+        configMapRef:
+          name: config-map1
