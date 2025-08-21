@@ -22,7 +22,7 @@ metadata:
 data:
   MONGO: "true"
   MONGO_URL: "mongodb://mongodb-dev.sdevops.shop:27017/catalogue"
-  DB_TYPE": "mongo"
+  DB_TYPE: "mongo"
   APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/catalogue"
   DB_HOST: "mongodb-dev.sdevops.shop"
   SCHEMA_FILE: "db/master-data.js"
