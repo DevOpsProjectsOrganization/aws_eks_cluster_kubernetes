@@ -176,6 +176,7 @@ metadata:
 spec:
   containers:
     - name: conf-map-container
+      image: nginx:1.14
       volumeMounts:
         - name: config-mount
           mountPath: /etc/nginx
