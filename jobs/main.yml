@@ -174,25 +174,15 @@ kind: ResourceQuota
 metadata:
   name: qutoa-1
 spec:
+  hard:
+    pods: "4"
+    requests.cpu: "1"
   scopeSelector:
     matchExpressions:
       - operator: include
         scopeName: PriorityClass
         values:
           - middle
----
-apiVersion: v1
-kind: ResourceQuota
-metadata:
-  name: quota-2
-spec:
-  scopeSelector:
-    matchExpressions:
-      - operator: include
-        scopeName: PriorityClass
-        values:
-          - middle
-
 ---
 apiVersion: v1
 kind: ResourceQuota
