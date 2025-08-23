@@ -172,11 +172,14 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: qutoa-1
+  name: quota-3
 spec:
   hard:
-    pods: "4"
-    requests.cpu: "1"
+    requests.cpu: "4"
+    requests.memory: "4Mi"
+    limits.cpu: "4"
+    limits.memory: "4Mi"
+    pods: 4
   scopeSelector:
     matchExpressions:
       - operator: In
@@ -185,19 +188,19 @@ spec:
           - middle
 ---
 apiVersion: v1
-kind: ResourceQuota
+kind: Pod
 metadata:
-  name: quota-3
+  name: pod-1
 spec:
-  hard:
-    requests.cpu: "1"
-    requests.memory: "1Mi"
-    limits.cpu: "1"
-    limits.memory: "1Mi"
-    pods: 4
-  scopeSelector:
-    matchExpressions:
-      - operator: In
-        scopeName: PriorityClass
-        values:
-          - middle
+  containers:
+    - name: container-1
+      image: nginx:1.14
+      ports:
+        - containerPort: 80
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "0.5Mi"
+            limits:
+              cpu: "0.5"
+              memory: "0.5Mi"
