@@ -180,21 +180,74 @@ spec:
     limits.cpu: "4"
     limits.memory: "4Mi"
     pods: 4
-  scopeSelector:
-    matchExpressions:
-      - operator: In
-        scopeName: PriorityClass
-        values:
-          - middle
+  # scopeSelector:
+  #   matchExpressions:
+  #     - operator: In
+  #       scopeName: PriorityClass
+  #       values:
+  #         - middle
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: pod-1
 spec:
-  priorityClassName: middle
   containers:
     - name: container-1
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: "0.5"
+          memory: "0.5Mi"
+        limits:
+          cpu: "0.5"
+          memory: "0.5Mi"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-2
+spec:
+  containers:
+    - name: container-2
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: "0.5"
+          memory: "0.5Mi"
+        limits:
+          cpu: "0.5"
+          memory: "0.5Mi"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-3
+spec:
+  containers:
+    - name: container-3
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: "0.5"
+          memory: "0.5Mi"
+        limits:
+          cpu: "0.5"
+          memory: "0.5Mi"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-4
+spec:
+  containers:
+    - name: container-4
       image: nginx:1.14.2
       ports:
         - containerPort: 80
