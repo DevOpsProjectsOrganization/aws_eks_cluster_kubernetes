@@ -258,3 +258,21 @@ spec:
         limits:
           cpu: "5"
           memory: "5Mi"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-5
+spec:
+  containers:
+    - name: container-5
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: "5"
+          memory: "5Mi"
+        limits:
+          cpu: "5"
+          memory: "5Mi"
