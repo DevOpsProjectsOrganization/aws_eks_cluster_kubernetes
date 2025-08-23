@@ -174,30 +174,24 @@ kind: ResourceQuota
 metadata:
   name: qutoa-1
 spec:
-  containers:
-    - name: quota-container-1
-      image: nginx:1.14
-      scopeSelector:
-        matchExpressions:
-          - operator: include
-            scopeName: PriorityClass
-            values:
-              - middle
+  scopeSelector:
+    matchExpressions:
+      - operator: include
+        scopeName: PriorityClass
+        values:
+          - middle
 ---
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: quota-2
 spec:
-  containers:
-    - name: quota-container-2
-      image: nginx:1.14
-      scopeSelector:
-        matchExpressions:
-          - operator: include
-            scopeName: PriorityClass
-            values:
-              - middle
+  scopeSelector:
+    matchExpressions:
+      - operator: include
+        scopeName: PriorityClass
+        values:
+          - middle
 
 ---
 apiVersion: v1
