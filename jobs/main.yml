@@ -192,6 +192,7 @@ kind: Pod
 metadata:
   name: pod-1
 spec:
+  priorityClassName: middle
   containers:
     - name: container-1
       image: nginx:1.14.2
