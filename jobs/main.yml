@@ -175,10 +175,10 @@ metadata:
   name: quota-3
 spec:
   hard:
-    requests.cpu: "4"
-    requests.memory: "4Mi"
-    limits.cpu: "4"
-    limits.memory: "4Mi"
+    requests.cpu: "20"
+    requests.memory: "20Mi"
+    limits.cpu: "20"
+    limits.memory: "20Mi"
     pods: 4
   # scopeSelector:
   #   matchExpressions:
@@ -199,11 +199,11 @@ spec:
         - containerPort: 80
       resources:
         requests:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
         limits:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
 ---
 apiVersion: v1
 kind: Pod
@@ -217,11 +217,11 @@ spec:
         - containerPort: 80
       resources:
         requests:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
         limits:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
 ---
 apiVersion: v1
 kind: Pod
@@ -235,11 +235,11 @@ spec:
         - containerPort: 80
       resources:
         requests:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
         limits:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
 ---
 apiVersion: v1
 kind: Pod
@@ -253,8 +253,8 @@ spec:
         - containerPort: 80
       resources:
         requests:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
         limits:
-          cpu: "0.5"
-          memory: "0.5Mi"
+          cpu: "5"
+          memory: "5Mi"
