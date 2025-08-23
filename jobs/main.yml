@@ -211,12 +211,10 @@ spec:
     limits.cpu: "1"
     limits.memory: "1Mi"
     pods: 4
-  containers:
-    - name: quota-container-3
-      image: nginx:1.14
-      scopeSelector:
-        matchExpressions:
-          - operator: include
-            scopeName: PriorityClass
-            values:
-              - middle
+
+scopeSelector:
+  matchExpressions:
+    - operator: include
+      scopeName: PriorityClass
+      values:
+        - middle
