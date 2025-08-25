@@ -49,8 +49,8 @@ metadata:
     appType: web
 spec:
   containers:
-    name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -61,8 +61,8 @@ metadata:
     appType: app
 spec:
   containers:
-    name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
