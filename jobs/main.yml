@@ -178,16 +178,17 @@ spec:
     metadata:
       labels:
         app: nginx-1
-    priorityClassName: high-priority-nonpreempting
-    containers:
-      - name: container-1
-        image: nginx:1.14.2
-        ports:
-          - containerPort: 80
-        resources:
-          requests:
-            cpu: "5"
-            memory: "5Mi"
+    spec:
+      priorityClassName: high-priority-nonpreempting
+      containers:
+        - name: container-1
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "5"
+              memory: "5Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -204,12 +205,13 @@ spec:
     metadata:
       labels:
         app: nginx-2
-    containers:
-      - name: container-2
-        image: nginx:1.14.2
-        ports:
-          - containerPort: 80
-        resources:
-          requests:
-            cpu: "5"
-            memory: "5Mi"
+    spec:
+      containers:
+        - name: container-2
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "5"
+              memory: "5Mi"
