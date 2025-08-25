@@ -105,93 +105,80 @@
 #   name: nginx-conf
 # data:
 #   conf: |
-#     user nginx;
-#     worker_processes auto;
-#     error_log /var/log/nginx/error.log notice;
-#     pid /run/nginx.pid;
-
-#     include /usr/share/nginx/modules/*.conf;
-
-#     events {
-#     worker_connections 1024;
-#     }
-
-#     http {
-#     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-#     '$status $body_bytes_sent "$http_referer" '
-#     '"$http_user_agent" "$http_x_forwarded_for"';
-
-#     access_log  /var/log/nginx/access.log  main;
-
-#     sendfile            on;
-#     tcp_nopush          on;
-#     keepalive_timeout   65;
-#     types_hash_max_size 4096;
-
-#     include             /etc/nginx/mime.types;
-#     default_type        application/octet-stream;
-
-#     include /etc/nginx/conf.d/*.conf;
-
-#     server {
-#     listen       80;
-#     listen       [::]:80;
-#     server_name  _;
-#     root         /usr/share/nginx/html;
-
-#     include /etc/nginx/default.d/*.conf;
-
-#     error_page 404 /404.html;
-#     location = /404.html {
-#     }
-
-#     error_page 500 502 503 504 /50x.html;
-#     location = /50x.html {
-#     }
-
-#     location /images/ {
-#     expires 5s;
-#     root   /usr/share/nginx/html;
-#     try_files $uri /images/placeholder.jpg;
-#     }
-
-#     location /api/catalogue/ { proxy_pass {{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{env}}/data/frontend:CATALOGUE_URL token={{ token }} url=http://vault-internal.sdevops.shop:8200')| regex_replace('/$', '') }} }
-#     location /api/user/ { proxy_pass {{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{env}}/data/frontend:USER_URL token={{ token }} url=http://vault-internal.sdevops.shop:8200')| regex_replace('/$', '') }} }
-#     location /api/cart/ { proxy_pass {{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{env}}/data/frontend:CART_URL token={{ token }} url=http://vault-internal.sdevops.shop:8200') | regex_replace('/$', '')}} }
-#     location /api/shipping/ { proxy_pass {{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{env}}/data/frontend:SHIPPING_URL token={{ token }} url=http://vault-internal.sdevops.shop:8200')| regex_replace('/$', '') }} }
-#     location /api/payment/ { proxy_pass {{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{env}}/data/frontend:PAYMENT_URL token={{ token }} url=http://vault-internal.sdevops.shop:8200')| regex_replace('/$', '') }} }
-
-#     location /health {
-#     stub_status on;
-#     access_log off;
-#     }
-
-#     }
-#     }
+#     user nginx; nginx.conf details
+# ---
+# apiVersion: v1
+# kind: ResourceQuota
+# metadata:
+#   name: quota-3
+# spec:
+#   hard:
+#     requests.cpu: "20"
+#     requests.memory: "20Mi"
+#     limits.cpu: "20"
+#     limits.memory: "20Mi"
+#     pods: 4
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-1
+# spec:
+#   containers:
+#     - name: container-1
+#       image: nginx:1.14.2
+#       ports:
+#         - containerPort: 80
+#       resources:
+#         requests:
+#           cpu: "5"
+#           memory: "5Mi"
+#         limits:
+#           cpu: "5"
+#           memory: "5Mi"
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-2
+# spec:
+#   containers:
+#     - name: container-2
+#       image: nginx:1.14.2
+#       ports:
+#         - containerPort: 80
+#       resources:
+#         requests:
+#           cpu: "5"
+#           memory: "5Mi"
+#         limits:
+#           cpu: "5"
+#           memory: "5Mi"
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority-nonpreempting
+value: 1000000
+preemptionPolicy: Never
+globalDefault: false
+description: "This priority class will not cause other pods to be preempted."
 ---
 apiVersion: v1
-kind: ResourceQuota
+kind: Deployment
 metadata:
-  name: quota-3
+  name: Deployment-1
+  labels:
+    app: nginx-1
 spec:
-  hard:
-    requests.cpu: "20"
-    requests.memory: "20Mi"
-    limits.cpu: "20"
-    limits.memory: "20Mi"
-    pods: 4
-  # scopeSelector:
-  #   matchExpressions:
-  #     - operator: In
-  #       scopeName: PriorityClass
-  #       values:
-  #         - middle
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-1
-spec:
+  priorityClassName: high-priority-nonpreempting
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-1
+  template:
+    metadata:
+      labels:
+        app: nginx-1
   containers:
     - name: container-1
       image: nginx:1.14.2
@@ -201,15 +188,22 @@ spec:
         requests:
           cpu: "5"
           memory: "5Mi"
-        limits:
-          cpu: "5"
-          memory: "5Mi"
 ---
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
-  name: pod-2
+  name: Deployment-2
+  labels:
+    app: nginx-2
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-2
+  template:
+    metadata:
+      labels:
+        app: nginx-2
   containers:
     - name: container-2
       image: nginx:1.14.2
@@ -217,62 +211,5 @@ spec:
         - containerPort: 80
       resources:
         requests:
-          cpu: "5"
-          memory: "5Mi"
-        limits:
-          cpu: "5"
-          memory: "5Mi"
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-3
-spec:
-  containers:
-    - name: container-3
-      image: nginx:1.14.2
-      ports:
-        - containerPort: 80
-      resources:
-        requests:
-          cpu: "5"
-          memory: "5Mi"
-        limits:
-          cpu: "5"
-          memory: "5Mi"
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-4
-spec:
-  containers:
-    - name: container-4
-      image: nginx:1.14.2
-      ports:
-        - containerPort: 80
-      resources:
-        requests:
-          cpu: "5"
-          memory: "5Mi"
-        limits:
-          cpu: "5"
-          memory: "5Mi"
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-5
-spec:
-  containers:
-    - name: container-5
-      image: nginx:1.14.2
-      ports:
-        - containerPort: 80
-      resources:
-        requests:
-          cpu: "5"
-          memory: "5Mi"
-        limits:
           cpu: "5"
           memory: "5Mi"
