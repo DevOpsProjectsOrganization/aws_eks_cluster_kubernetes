@@ -170,7 +170,6 @@ metadata:
   labels:
     app: nginx-1
 spec:
-  priorityClassName: high-priority-nonpreempting
   replicas: 2
   selector:
     matchLabels:
@@ -179,6 +178,7 @@ spec:
     metadata:
       labels:
         app: nginx-1
+    priorityClassName: high-priority-nonpreempting
     containers:
       - name: container-1
         image: nginx:1.14.2
