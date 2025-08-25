@@ -1,0 +1,100 @@
+apiVersion: v1
+kind: NameSpace
+metadata:
+  name: web
+  labels:
+    ns: web
+---
+apiVersion: v1
+kind: NameSpace
+metadata:
+  name: app
+  labels:
+    ns: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: web
+spec:
+  type: ClusterIP
+  selector:
+    appType: web
+  ports:
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  namespace: app
+spec:
+  type: ClusterIP
+  selector:
+    appType: app
+  ports:
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-1
+  namespace: web
+  labels:
+    appType: web
+spec:
+  containers:
+    name: nginx
+    image: nginx
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-1
+  namespace: app
+  labels:
+    appType: app
+spec:
+  containers:
+    name: nginx
+    image: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      appType: web
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              project: web
+        - podSelector:
+            matchLabels:
+              appType: web
+      ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    - {}
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: debug
+spec:
+  containers:
+    - name: debug
+      image: rkalluru/debug
