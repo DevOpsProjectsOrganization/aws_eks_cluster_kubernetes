@@ -135,3 +135,7 @@ resource "aws_eks_node_group" "nodegroup_1" {
   }
   
 }
+resource "aws_eks_addon" "aws_cni" {
+  cluster_name = aws_eks_cluster.aws_cni.name
+  addon_name   = "vpc-cni"
+}
