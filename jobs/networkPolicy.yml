@@ -89,10 +89,10 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              ns: app
+              ns: web
         - podSelector:
             matchLabels:
-              appType: app
+              appType: web
       ports:
         - protocol: TCP
           port: 80
