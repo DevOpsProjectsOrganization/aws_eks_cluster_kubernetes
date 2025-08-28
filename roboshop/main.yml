@@ -24,6 +24,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: frontend
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #catalogue
@@ -52,6 +64,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: catalogue
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #user
@@ -80,6 +104,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: user
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #cart
@@ -108,6 +144,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: cart
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #shipping
@@ -136,6 +184,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: shipping
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #payment
@@ -164,6 +224,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: payment
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
 
 ---
 #schema load for shipping 3 jobs
