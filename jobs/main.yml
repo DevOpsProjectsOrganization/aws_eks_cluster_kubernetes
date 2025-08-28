@@ -193,7 +193,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-2
+  name: hpa
   labels:
     app: hpa
 spec:
