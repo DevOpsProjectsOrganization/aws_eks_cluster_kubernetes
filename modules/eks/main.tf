@@ -138,4 +138,10 @@ resource "aws_eks_node_group" "nodegroup_1" {
 resource "aws_eks_addon" "example" {
   cluster_name = aws_eks_cluster.example.name
   addon_name   = "vpc-cni"
+  configuration_values= jsonencode( {
+    "enableNetworkPolicy": "true",
+    "nodeAgent": {
+        "enablePolicyEventLogs" : "true"
+    }
+})
 }
