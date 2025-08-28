@@ -222,7 +222,7 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoScaler
 metadata:
-  name: hpa-test
+  name: hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
