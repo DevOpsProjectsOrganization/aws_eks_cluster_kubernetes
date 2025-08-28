@@ -8,10 +8,10 @@
 # requiredDuringSchedulingIgnoredDuringExecution ----> only schedules the pod if there is a label that matches the pod label.
 # preferredDuringSchedulingIgnoredDuringExecution ----> tries to schedule in the matched label node, however if not available it still can schedule in any other nodes.
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Pod
 metadata:
-  name: with-node-affinity
+  name: node-with-affinity
 spec:
   containers:
     name: node-with-affinity
@@ -27,10 +27,10 @@ spec:
                   - "two"
 #will not schedule at all
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Pod
 metadata:
-  name: without-node-affinity
+  name: node-without-affinity
 spec:
   containers:
     name: node-without-affinity
