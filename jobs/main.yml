@@ -154,42 +154,42 @@
 #         limits:
 #           cpu: "5"
 #           memory: "5Mi"
-apiVersion: scheduling.k8s.io/v1
-kind: PriorityClass
-metadata:
-  name: high-priority-nonpreempting
-value: 1000000
-preemptionPolicy: Never
-globalDefault: false
-description: "This priority class will not cause other pods to be preempted."
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: deployment-1
-  labels:
-    app: nginx-1
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nginx-1
-  template:
-    metadata:
-      labels:
-        app: nginx-1
-    spec:
-      priorityClassName: high-priority-nonpreempting
-      containers:
-        - name: container-1
-          image: nginx:1.14.2
-          ports:
-            - containerPort: 80
-          resources:
-            requests:
-              cpu: "5"
-              memory: "5Mi"
----
+# apiVersion: scheduling.k8s.io/v1
+# kind: PriorityClass
+# metadata:
+#   name: high-priority-nonpreempting
+# value: 1000000
+# preemptionPolicy: Never
+# globalDefault: false
+# description: "This priority class will not cause other pods to be preempted."
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: deployment-1
+#   labels:
+#     app: nginx-1
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: nginx-1
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx-1
+#     spec:
+#       priorityClassName: high-priority-nonpreempting
+#       containers:
+#         - name: container-1
+#           image: nginx:1.14.2
+#           ports:
+#             - containerPort: 80
+#           resources:
+#             requests:
+#               cpu: "5"
+#               memory: "5Mi"
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -213,5 +213,8 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: "5"
-              memory: "5Mi"
+              cpu: "250m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
