@@ -218,3 +218,22 @@ spec:
             limits:
               cpu: "500m"
               memory: "128Mi"
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoScaler
+metadata:
+  name: hpa-test
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpa
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
