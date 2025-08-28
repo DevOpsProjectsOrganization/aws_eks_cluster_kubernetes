@@ -38,10 +38,10 @@ spec:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: affinity1
-                operator: In
-                values:
-                  - "two"
+        - nodeSelectorTerms:
+            - matchExpressions:
+                - key: affinity1
+                  operator: In
+                  values:
+                    - "two"
 # will schedule
