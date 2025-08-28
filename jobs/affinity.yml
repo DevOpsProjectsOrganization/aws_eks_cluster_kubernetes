@@ -38,7 +38,8 @@ spec:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-        - preference:
+        - weight: 1
+          preference:
             matchExpressions:
               - key: affinity1
                 operator: In
