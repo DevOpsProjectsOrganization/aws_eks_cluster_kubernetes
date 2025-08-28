@@ -195,20 +195,20 @@ kind: Deployment
 metadata:
   name: deployment-2
   labels:
-    app: nginx-2
+    app: hpa
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-2
+      app: hpa
   template:
     metadata:
       labels:
-        app: nginx-2
+        app: hpa
     spec:
       containers:
-        - name: container-2
-          image: nginx:1.14.2
+        - name: container
+          image: rkalluru/hpa
           ports:
             - containerPort: 80
           resources:
