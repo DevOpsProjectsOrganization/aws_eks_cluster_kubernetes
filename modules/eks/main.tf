@@ -1,5 +1,5 @@
-resource "aws_eks_cluster" "${var.env}-cluster" {
-  name = "${ var.env}-cluster"
+resource "aws_eks_cluster" "main-cluster" {
+  name = "${var.env}-cluster"
   role_arn = aws_iam_role.cluster.arn
   version  = "1.31"
 
