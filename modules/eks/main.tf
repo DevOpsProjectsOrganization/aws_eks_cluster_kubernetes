@@ -115,7 +115,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryRea
 }
 
 resource "aws_eks_node_group" "nodegroup_1" {
-  cluster_name    = aws_eks_cluster.example.name
+  cluster_name    = aws_eks_cluster.main-cluster.name
   node_group_name = "nodegroup_1"
   node_role_arn   = aws_iam_role.node_group.arn
   subnet_ids      =  [
@@ -134,7 +134,7 @@ resource "aws_eks_node_group" "nodegroup_1" {
   
 }
 resource "aws_eks_addon" "example" {
-  cluster_name = aws_eks_cluster.example.name
+  cluster_name = aws_eks_cluster.main-cluster.name
   addon_name   = "vpc-cni"
   configuration_values= jsonencode( {
     "enableNetworkPolicy": "true",
