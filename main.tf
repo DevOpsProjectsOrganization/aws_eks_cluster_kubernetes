@@ -9,9 +9,9 @@ module "ec2" {
     env             = var.env
 }
 module "eks" {
-    for_each        = var.eks
     source          = "./modules/eks"
-    version         = var.version
+    for_each        = var.eks
+    version         = each.value["varsion"]
     subnet_ids      = each.value["subnet_ids"]
     env             = var.env
 
