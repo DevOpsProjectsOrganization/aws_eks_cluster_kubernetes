@@ -1,7 +1,7 @@
 resource "aws_eks_cluster" "${var.env}-cluster" {
   name = "${ var.env}-cluster"
   role_arn = aws_iam_role.cluster.arn
-  version  = ${var.version}
+  version  = "1.31"
 
   vpc_config {
     subnet_ids = ${var.subnet_ids}
