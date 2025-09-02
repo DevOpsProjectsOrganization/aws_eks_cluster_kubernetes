@@ -4,7 +4,7 @@ resource "aws_eks_cluster" "main-cluster" {
   version  = "1.31"
 
   vpc_config {
-    subnet_ids = ${var.subnet_ids}
+    subnet_ids = var.subnet_ids
   }
   depends_on = [
     aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy,
