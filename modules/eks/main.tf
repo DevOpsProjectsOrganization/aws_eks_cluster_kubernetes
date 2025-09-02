@@ -1,12 +1,10 @@
-resource "aws_eks_cluster" "example" {
-  name = "example"
+resource "aws_eks_cluster" "${var.env}-cluster" {
+  name = "${ var.env}-cluster"
   role_arn = aws_iam_role.cluster.arn
-  version  = "1.31"
+  version  = ${var.version}
 
   vpc_config {
-    subnet_ids = [
-     "subnet-0b0561e5654e35569", "subnet-0a4f3e69dee139ca9"
-    ]
+    subnet_ids = ${var.subnet_ids}
   }
   depends_on = [
     aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy,
