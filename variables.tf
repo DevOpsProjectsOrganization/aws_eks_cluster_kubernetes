@@ -5,3 +5,4 @@ variable "zone_name" {}
 variable "ami" {}
 # variable "subnet_ids" {}
 variable "eks" {}
+variable "tools" {}
