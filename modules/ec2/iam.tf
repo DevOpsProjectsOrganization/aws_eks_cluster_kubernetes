@@ -14,3 +14,7 @@ resource "aws_iam_role" "main" {
     })
 
 }
+resource "aws_iam_instance_profile" "main" {
+  name =  "${var.name}-${var.env}-ec2-role"
+  role = aws_iam_role.main.name
+}
