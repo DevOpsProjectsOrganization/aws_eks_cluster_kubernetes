@@ -1,0 +1,10 @@
+name : Apply
+on: 
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: terraform apply
+        run: make dev-apply
