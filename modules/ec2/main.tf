@@ -9,6 +9,7 @@ resource "aws_instance" "my_instance" {
         volume_type = "gp3"
     }
     vpc_security_group_ids= [data.aws_security_group.selected.id]
+    iam_instance_profile   = aws_iam_instance_profile.main.name
 }
 
 resource "aws_route53_record" "my_private_record"{
