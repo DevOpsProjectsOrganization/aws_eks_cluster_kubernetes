@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   apply:
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
       - name: terraform apply
