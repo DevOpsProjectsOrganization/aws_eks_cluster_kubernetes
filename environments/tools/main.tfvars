@@ -5,5 +5,6 @@ zone_name= "sdevops.shop"
 tools = {
     github-runner={
         instance_type = "t2.micro"
+        iam_policy    = ["*"]
     }
 }
