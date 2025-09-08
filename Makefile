@@ -18,3 +18,7 @@ dev-destroy:
 tools-infra:
 	git pull
 	cd tools ; terraform init ; terraform apply -auto-approve -var-file=../environments/tools/main.tfvars
+
+tools-destroy:
+	git pull
+	cd tools ; terraform init ; terraform destroy -auto-approve -var-file=../environments/tools/main.tfvars
