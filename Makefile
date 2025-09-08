@@ -4,10 +4,12 @@ dev-init:
 	terraform init  
 dev-plan:
 	git pull
+	rm -rf ./terraform/terraform.tfstate
 	terraform init  
 	terraform plan -var-file=./environments/dev/main.tfvars 
 dev-apply:
 	git pull
+	rm -rf ./terraform/terraform.tfstate
 	terraform init  
 	terraform apply -auto-approve -var-file=./environments/dev/main.tfvars 
 dev-destroy:
@@ -17,7 +19,7 @@ dev-destroy:
 
 tools-infra:
 	git pull
-	cd tools ; terraform init ; terraform apply -auto-approve -var-file=../environments/tools/main.tfvars
+	cd tools ; rm -rf ./terraform/terraform.tfstate; terraform init ; terraform apply -auto-approve -var-file=../environments/tools/main.tfvars
 
 tools-destroy:
 	git pull
