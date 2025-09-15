@@ -9,3 +9,9 @@ module "tools" {
     iam_policy      = try(each.value["iam_policy"], [])
     env             = var.env
 }
+
+resource "aws_ecr_repository" "main" {
+    for_each            = var.ecr
+    name                 = each.key
+    image_tag_mutability = each.value
+}

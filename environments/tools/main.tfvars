@@ -8,3 +8,13 @@ tools = {
         iam_policy    = ["*"]
     }
 }
+ecr = {
+    default = {
+        frontend    =   "IMMUTABLE"
+        cart        =   "IMMUTABLE"
+        catalogue   =   "IMMUTABLE"
+        payment     =   "IMMUTABLE"
+        user        =   "IMMUTABLE"
+        shipping    =   "IMMUTABLE"
+    }
+}
