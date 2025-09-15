@@ -12,6 +12,6 @@ module "tools" {
 
 resource "aws_ecr_repository" "main" {
     for_each            = var.ecr
-    name                 = each.key
-    image_tag_mutability = each.value
+    name                = each.key
+    image_tag_mutability= each.value
 }
