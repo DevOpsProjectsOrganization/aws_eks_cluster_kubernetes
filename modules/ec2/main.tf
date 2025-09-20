@@ -5,7 +5,7 @@ resource "aws_instance" "my_instance" {
         Name        = local.name
     }
     root_block_device {
-        volume_size = 60 
+        volume_size = 80 
         volume_type = "gp3"
     }
     vpc_security_group_ids= [data.aws_security_group.selected.id]
