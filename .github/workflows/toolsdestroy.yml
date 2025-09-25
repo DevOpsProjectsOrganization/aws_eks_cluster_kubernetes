@@ -1,8 +1,8 @@
-name : Apply
+name : Tools Destroy
 on: 
   workflow_dispatch:
 jobs:
-  apply:
+  toolsDestroy:
     runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
