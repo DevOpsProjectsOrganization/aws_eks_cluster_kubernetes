@@ -4,7 +4,7 @@ resource "aws_eks_cluster" "main-cluster" {
   version  = "1.31"
   #creates an opening for any outer nodes accessing the cluster
   access_config {
-    authentication_mode = "API_CONFIG_MAP"
+    authentication_mode = "API_AND_CONFIG_MAP"
   }
   vpc_config {
     subnet_ids = var.subnet_ids
