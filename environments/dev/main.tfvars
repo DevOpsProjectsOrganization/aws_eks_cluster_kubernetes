@@ -28,10 +28,12 @@ eks={
             ]
         env        = "dev"
         access = {
-            principal_arn   = "arn:aws:iam::533567530972:role/workstation_role"
-            policy_arn      = "arn:aws:eks::aws:cluster_access_policy/AmazonEKSAdminPolicy"
-            access_scope    = "cluster"
-            namespaces      = "cluster"
+            workstation = {
+                principal_arn   = "arn:aws:iam::533567530972:role/workstation_role"
+                policy_arn      = "arn:aws:eks::aws:cluster_access_policy/AmazonEKSAdminPolicy"
+                access_scope    = "cluster"
+                namespaces      = "cluster"
+            }
         }
 }
     
