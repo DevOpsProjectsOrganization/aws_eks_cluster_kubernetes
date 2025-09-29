@@ -2,7 +2,10 @@ resource "aws_eks_cluster" "main-cluster" {
   name = "${var.env}"
   role_arn = aws_iam_role.cluster.arn
   version  = "1.31"
-
+  #creates an opening for any outer nodes accessing the cluster
+  access_config {
+    authentication_mode = "API_CONFIG_MAP"
+  }
   vpc_config {
     subnet_ids = var.subnet_ids
   }
@@ -43,4 +46,23 @@ resource "aws_eks_addon" "example" {
         "enablePolicyEventLogs" : "true"
     }
 })
+}
+#create a access point for the cluster 
+resource "aws_eks_access_entry" "access" {
+  for_each          = var.access
+  cluster_name      = aws_eks_cluster.main-cluster.name
+  principal_arn     = each.value["principal_arn"]
+  kubernetes_groups =  try(each.value["kubernetes_groups"],[])
+  type              = "STANDARD"
+}
+# now the access point and the cluster entry point are connected
+resource "aws_eks_access_policy_association" "main"{
+  for_each          = var.access
+  cluster_name      = aws_eks_cluster.main-cluster.name
+  policy_arn        = each.value["policy_arn"]
+  principal_arn     = each.value["principal_arn"]
+  access_scope{
+    type            = each.value["access_scope"]
+    namespaces      = each.value["access_scope"]=="cluster" ? [] : try(each.value["namespaces],[])
+  }
 }

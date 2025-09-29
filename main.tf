@@ -13,6 +13,6 @@ module "eks" {
     for_each        = var.eks
     subnet_ids      = each.value["subnet_ids"]
     env             = each.value["env"]
-
+    access          = each.value["access"]
 }
 
