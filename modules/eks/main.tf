@@ -64,6 +64,6 @@ resource "aws_eks_access_policy_association" "main" {
 
   access_scope {
     type       = each.value["access_scope"]
-    namespaces = each.value["access_scope"] == "cluster" ? [] : try(each.value["namespaces"], [])
+    namespaces = []
   }
 }
