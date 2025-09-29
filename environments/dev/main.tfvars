@@ -30,8 +30,13 @@ eks={
         access = {
             workstation = {
                 principal_arn   = "arn:aws:iam::533567530972:role/workstation_role"
-                policy_arn      = "arn:aws:eks::aws:cluster_access_policy/AmazonEKSAdminPolicy"
+                policy_arn      = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
                 access_scope    = "cluster"
+            }
+            github-runner = {
+                principal_arn = "arn:aws:iam::533567530972:role/github-runner-ec2-role"
+                access_scope  = "cluster"
+                policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
             }
         }
 }
