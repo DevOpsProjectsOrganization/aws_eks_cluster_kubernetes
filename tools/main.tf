@@ -6,7 +6,7 @@ module "tools" {
     zone_id         = var.zone_id
     zone_name       = var.zone_name
     name            = each.key
-    iam_policy      = try(each.value["iam_policy"], [])
+    #iam_policy      = try(each.value["iam_policy"], [])
     env             = var.env
 }
 
