@@ -14,6 +14,6 @@ ecr = {
     catalogue   =   "IMMUTABLE"
     payment     =   "IMMUTABLE"
     user        =   "IMMUTABLE"
-    shipping    =   "IMMUTABLE"
+    shipping    =   "MUTABLE"
     runner      =   "MUTABLE"
 }
