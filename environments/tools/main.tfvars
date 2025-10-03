@@ -15,5 +15,5 @@ ecr = {
     payment     =   "IMMUTABLE"
     user        =   "IMMUTABLE"
     shipping    =   "IMMUTABLE"
-    #runner      =   "MUTABLE"
+    runner      =   "MUTABLE"
 }
