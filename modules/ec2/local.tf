@@ -1,3 +1,3 @@
-locals {
-  iam_policy = concat(["sts:GetCallerIdentity"], var.iam_policy)
+locals {         
+  iam_policy = concat(["sts:GetCallerIdentity","ecr:GetDownloadUrlForLayer","ecr:GetAuthorizationToken","ecr:BatchGetImage"], var.iam_policy)
 }
