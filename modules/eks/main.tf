@@ -22,7 +22,7 @@ resource "aws_eks_node_group" "nodegroup_1" {
   cluster_name    = aws_eks_cluster.main-cluster.name
   node_group_name = "nodegroup_1"
   node_role_arn   = aws_iam_role.node.arn
-  instance_types  = "t3.xlarge"
+  instance_types  = ["t3.xlarge"]
   subnet_ids      =  [
      "subnet-0a4f3e69dee139ca9", "subnet-0b0561e5654e35569"
     ]
