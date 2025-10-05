@@ -9,13 +9,13 @@ resource "aws_eks_cluster" "main-cluster" {
   vpc_config {
     subnet_ids = var.subnet_ids
   }
-  #depends_on = [
-   # aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy,
-    #aws_iam_role_policy_attachment.cluster_AmazonEKSComputePolicy,
-    #aws_iam_role_policy_attachment.cluster_AmazonEKSBlockStoragePolicy,
-    #aws_iam_role_policy_attachment.cluster_AmazonEKSLoadBalancingPolicy,
-    #aws_iam_role_policy_attachment.cluster_AmazonEKSNetworkingPolicy,
-  #]
+  depends_on = [
+    aws_iam_role_policy_attachment.cluster_AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.cluster_AmazonEKSComputePolicy,
+    aws_iam_role_policy_attachment.cluster_AmazonEKSBlockStoragePolicy,
+    aws_iam_role_policy_attachment.cluster_AmazonEKSLoadBalancingPolicy,
+    aws_iam_role_policy_attachment.cluster_AmazonEKSNetworkingPolicy,
+  ]
 }
 
 resource "aws_eks_node_group" "nodegroup" {
