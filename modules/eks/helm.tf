@@ -1,5 +1,5 @@
 resource "null_resource" "kubeconfig"{
-    depends_on  = [aws_eks_node_group.nodegroup_1]
+    depends_on  = [module.eks]#[aws_eks_node_group.nodegroup_1]
     provisioner "local-exec"{
         command = "aws eks update-kubeconfig --name ${var.env} --region us-east-1"
     }
