@@ -4,7 +4,10 @@ resource "null_resource" "kubeconfig"{
       aws_eks_node_group.nodegroup_1
       ]
     provisioner "local-exec"{
-        command = "aws eks update-kubeconfig --name ${var.env} --region us-east-1"
+        command = <<EOT
+          aws eks update-kubeconfig --name ${var.env} --region us-east-1
+          sleep 30
+        EOT
     }
 }
 # this nginx ingress controller comes on top of load balancer and argoCD 
