@@ -19,6 +19,15 @@ terraform {
 #    config_path = "~/.kube/config"
 #  }
 #}
+data "aws_eks_cluster" "eks" {
+  name = aws_eks_cluster.main-cluster.name
+}
+
+data "aws_eks_cluster_auth" "eks" {
+  name = aws_eks_cluster.main-cluster.name
+}
+
+# --- Now configure Helm provider dynamically ---
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.eks.endpoint
