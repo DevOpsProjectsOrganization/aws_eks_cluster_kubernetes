@@ -15,6 +15,7 @@ terraform {
   }
 }
 provider "helm" {
+  alias = "eks"
   kubernetes {
     config_path = "~/.kube/config"
   }
