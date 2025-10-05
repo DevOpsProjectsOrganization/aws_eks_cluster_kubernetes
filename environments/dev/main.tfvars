@@ -11,9 +11,7 @@ databases = {
     rabbitmq = {
         instance_type = "t2.micro"
     }
-
 }
-
 ami     = "ami-00b4d312883eab224"
 #"ami-09c813fb71547fc4f"
 env     = "dev"
@@ -39,8 +37,5 @@ eks={
                 policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
             }
         }
+}   
 }
-    
-}
-
-
