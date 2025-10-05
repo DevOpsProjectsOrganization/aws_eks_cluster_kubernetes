@@ -8,7 +8,7 @@ resource "null_resource" "kubeconfig"{
     ]
   provisioner "local-exec"{
       command = <<EOT
-        mkdir -p ~/.kube
+        
         aws eks update-kubeconfig --name ${var.env} --region us-east-1
         kubectl get svc || true
       EOT
