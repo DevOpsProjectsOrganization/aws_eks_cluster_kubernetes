@@ -22,6 +22,27 @@
 #  chart      = "ingress-nginx" 
 #}
 
+resource "null_resource" "execute_command" {
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws eks get-token \
+        --cluster-name ${var.env} \
+        --region us-east-1  > eks_token.txt
+    EOT
+  }
+}
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "cat"
+    args        = ["eks_token.txt"]
+  }
+}
+
 resource "helm_release" "nginx_ingress" {
   depends_on = [
     aws_eks_cluster.main-cluster,
