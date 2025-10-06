@@ -24,7 +24,7 @@ data "aws_eks_cluster" "eks" {
 }
 
 data "aws_eks_cluster_auth" "eks" {
-  name = module.eks.aws_eks_cluster.main-cluster
+  name = module.eks.aws_eks_cluster.main-cluster.name
 }
 
 # --- Now configure Helm provider dynamically ---
