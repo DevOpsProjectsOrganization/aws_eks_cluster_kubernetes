@@ -22,14 +22,6 @@
 #  chart      = "ingress-nginx" 
 #}
 
-# EKS Cluster Auth Data
-data "aws_eks_cluster" "eks" {
-  name = aws_eks_cluster.main-cluster.name
-}
-
-data "aws_eks_cluster_auth" "eks" {
-  name = aws_eks_cluster.main-cluster.name
-}
 resource "helm_release" "nginx_ingress" {
   depends_on = [
     aws_eks_cluster.main-cluster,
@@ -38,8 +30,8 @@ resource "helm_release" "nginx_ingress" {
     aws_eks_access_entry.access,
     aws_eks_access_policy_association.main
   ]
-
   name       = "nginx-ingress-controller"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
+  create_namespace = true
 }
