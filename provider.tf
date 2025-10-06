@@ -20,11 +20,11 @@ terraform {
 #  }
 #}
 data "aws_eks_cluster" "eks" {
-  name = module.eks.cluster_name.name
+  name = module.eks.aws_eks_cluster.main-cluster.name
 }
 
 data "aws_eks_cluster_auth" "eks" {
-  name = module.eks.cluster_name.name
+  name = module.eks.aws_eks_cluster.main-cluster
 }
 
 # --- Now configure Helm provider dynamically ---
