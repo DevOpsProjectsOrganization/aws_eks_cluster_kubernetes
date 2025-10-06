@@ -14,12 +14,11 @@ terraform {
     }
   }
 }
-
-#provider "helm" {
-#kubernetes {
-#   config_path = "~/.kube/config"
-# }
-#}
+provider "helm" {
+kubernetes {
+   config_path = "~/.kube/config"
+ }
+}
 
 #data "aws_eks_cluster" "eks" {
 # name = module.eks["main"].cluster_name
