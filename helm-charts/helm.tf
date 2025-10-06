@@ -1,7 +1,8 @@
 resource "null_resource" "kubeconfig"{
     depends_on  = [aws_eks_cluster.main-cluster]
     provisioner "local-exec"{
-        command = <<EOF        
+        command = <<EOF 
+        aws eks describe-cluster --name dev --region us-east-1       
         aws eks update-kubeconfig --name ${aws_eks_cluster.main-cluster.name} --region us-east-1
         echo "success"
         EOF
