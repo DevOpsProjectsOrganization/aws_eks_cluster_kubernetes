@@ -12,7 +12,7 @@ terraform {
     #  source  = "hashicorp/helm"
     #  version = "2.17.0"
     #}
-  }
+  #}
 }
 
 #provider "helm" {
