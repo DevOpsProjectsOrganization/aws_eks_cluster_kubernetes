@@ -25,7 +25,7 @@ data "aws_eks_cluster" "eks" {
 }
 
 data "aws_eks_cluster_auth" "eks" {
-  name = module.eks.cluster_name
+  name = module.eks.cluster_name.value
 }
 
 provider "helm" {
