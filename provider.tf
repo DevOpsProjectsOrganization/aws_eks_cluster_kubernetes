@@ -21,11 +21,11 @@ terraform {
 #}
 
 data "aws_eks_cluster" "eks" {
-  name = module.eks.aws_eks_cluster.name
+  name = module.eks.aws_eks_cluster
 }
 
 data "aws_eks_cluster_auth" "eks" {
-  name = module.eks.aws_eks_cluster.name
+  name = module.eks.aws_eks_cluster
 }
 
 provider "helm" {
