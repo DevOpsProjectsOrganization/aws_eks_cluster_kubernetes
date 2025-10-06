@@ -17,6 +17,6 @@ terraform {
 
 provider "helm" {
   kubernetes {
-    config_path = "./kubeconfig_${module.eks["main"].cluster_name}"
+    config_path = "~/.kube/config"
   }
 }
