@@ -1,14 +1,11 @@
 resource "null_resource" "kubeconfig"{
-  triggers = {
-    always = timestamp()
-  } 
- depends_on  = [module.eks]
-provisioner "local-exec"{
-     command = <<EOF        
-       aws eks update-kubeconfig --name ${var.env} --region us-east-1
-       echo "success"
-     EOF
- }
+    depends_on  = [aws_eks_cluster.main-cluster]
+    provisioner "local-exec"{
+        command = <<EOF        
+        aws eks update-kubeconfig --name ${aws_eks_cluster.main-cluster.name} --region us-east-1
+        echo "success"
+        EOF
+    }
 }
 # this nginx ingress controller comes on top of load balancer and argoCD 
 resource "helm_release" "nginx_ingress" {
