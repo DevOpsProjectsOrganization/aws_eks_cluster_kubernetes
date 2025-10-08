@@ -10,9 +10,8 @@ module "ec2" {
 }
 module "eks" {
     source          = "./modules/eks"
-    for_each        = var.eks
-    subnet_ids      = each.value["subnet_ids"]
-    env             = each.value["env"]
-    access          = each.value["access"]
+    subnet_ids      = var.eks["subnet_ids"]
+    env             = var.eks["env"]
+    access          = var.eks["access"]
 }
 
