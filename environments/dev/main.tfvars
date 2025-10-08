@@ -19,8 +19,7 @@ zone_id = "Z08786032W2NWXT9UW4JD"
 zone_name= "sdevops.shop"
 
 eks={
-    main= {
-        
+          
         subnet_ids = [
             "subnet-0b0561e5654e35569", "subnet-0a4f3e69dee139ca9"
             ]
@@ -37,5 +36,5 @@ eks={
                 policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
             }
         }
-}   
+      
 }
