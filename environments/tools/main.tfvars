@@ -8,15 +8,12 @@ tools = {
        iam_policy    = ["eks:DescribeCluster","eks:ListClusters","eks:ListFargateProfiles","eks:ListNodegroups","*"]
     }
 }
-#ecr = {
-#   frontend    =   "IMMUTABLE"
-#    cart        =   "IMMUTABLE"
-#    catalogue   =   "IMMUTABLE"
-#   payment     =   "IMMUTABLE"
-#   user        =   "IMMUTABLE"
-#   shipping    =   "IMMUTABLE"
-#    runner      =   "MUTABLE"
-#}
-ecr= {
+ecr = {
     frontend    =   "IMMUTABLE"
+    cart        =   "IMMUTABLE"
+    catalogue   =   "IMMUTABLE"
+    payment     =   "IMMUTABLE"
+    user        =   "IMMUTABLE"
+    shipping    =   "IMMUTABLE"
+    runner      =   "MUTABLE"
 }
