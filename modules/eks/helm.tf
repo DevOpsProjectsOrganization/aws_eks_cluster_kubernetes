@@ -6,12 +6,10 @@ data "aws_eks_cluster_auth" "main-cluster" {
   name = aws_eks_cluster.main-cluster.name
 }
 
-provider "helm" {
-  kubernetes {
+provider "kubernetes" {
     host                   = data.aws_eks_cluster.main-cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.main-cluster.certificate_authority[0].data)
     token                  = data.aws_eks_cluster_auth.main-cluster.token
-  }
 }
 
 resource "helm_release" "nginx_ingress" {
