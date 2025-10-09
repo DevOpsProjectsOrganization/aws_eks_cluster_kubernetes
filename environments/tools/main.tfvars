@@ -17,3 +17,6 @@ tools = {
 #   shipping    =   "IMMUTABLE"
 #    runner      =   "MUTABLE"
 #}
+ecr {
+    frontend    =   "IMMUTABLE"
+}
