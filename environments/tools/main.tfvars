@@ -5,7 +5,7 @@ zone_name= "sdevops.shop"
 tools = {
     github-runner={
         instance_type = "t2.micro"
-       iam_policy    = ["*"]
+       iam_policy    = ["eks:DescribeCluster","eks:ListClusters","eks:ListFargateProfiles","eks:ListNodegroups","*"]
     }
 }
 ecr = {
