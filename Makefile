@@ -4,12 +4,10 @@ dev-init:
 	terraform init  
 dev-plan:
 	git pull
-	rm -rf ./terraform/terraform.tfstate
 	terraform init  
 	terraform plan -var-file=./environments/dev/main.tfvars 
 dev-apply:
 	git pull
-	rm -rf ./terraform/terraform.tfstate
 	terraform init  
 	terraform apply -auto-approve -var-file=./environments/dev/main.tfvars 
 dev-destroy:
@@ -27,4 +25,4 @@ tools-destroy:
 
 helm-ingress:
 	git pull
-	cd helm-charts; rm -f .terraform/terraform.tfstate; terraform init -upgrade; aws eks update-kubeconfig --name dev; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
+	cd helm-charts; aws eks update-kubeconfig --name dev; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
