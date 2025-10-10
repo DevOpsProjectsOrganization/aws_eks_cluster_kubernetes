@@ -27,4 +27,4 @@ tools-destroy:
 
 helm-ingress:
 	git pull
-	cd helm-charts; terraform init; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
+	cd helm-charts; rm -rf ./terraform/terraform.tfstate; terraform init; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
