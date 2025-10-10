@@ -27,4 +27,4 @@ tools-destroy:
 
 helm-ingress:
 	git pull
-	cd helm-charts; rm -rf ./terraform/terraform.tfstate; terraform init -reconfigure; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
+	cd helm-charts; aws eks update-kubeconfig --name dev; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
