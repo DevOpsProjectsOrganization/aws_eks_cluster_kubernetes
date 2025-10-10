@@ -2,7 +2,11 @@ provider "aws" {
   region = "us-east-1"
 }
 terraform {
-  backend "s3" {}
+  backend "s3" {
+    bucket  = "terraform-bucket-85"
+    key     = "ecommerce_terraform/dev/terraform.tfstate"
+    region  = "us-east-1"
+  }
   required_providers {
     helm = {
       source  = "hashicorp/helm"
