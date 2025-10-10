@@ -24,3 +24,7 @@ tools-infra:
 tools-destroy:
 	git pull
 	cd tools ; terraform init ; terraform destroy -auto-approve -var-file=../environments/tools/main.tfvars
+
+helm-ingress:
+	git pull
+	cd helm-charts; terraform init; terraform apply -auto-approve -var-file=../environments/dev/main.tfvars 
