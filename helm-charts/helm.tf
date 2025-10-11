@@ -1,8 +1,5 @@
 resource "null_resource" "kubeconfig" {
-
-  triggers = {
-    always = timestamp()
-  }
+  depends_on = [module.eks["main"].aws_eks_cluster.main-cluster.name]
 
   provisioner "local-exec" {
     command = <<EOF
