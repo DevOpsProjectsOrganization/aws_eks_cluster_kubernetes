@@ -1,5 +1,5 @@
 resource "null_resource" "kubeconfig" {
-  depends_on = [module.eks["main"].aws_eks_cluster]
+  depends_on = [module.eks]
 
   provisioner "local-exec" {
     command = <<EOF
