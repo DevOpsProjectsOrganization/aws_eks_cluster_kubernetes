@@ -31,7 +31,7 @@ resource "helm_release" "external-dns" {
 resource "helm_release" "argocd" {
   depends_on      = [null_resource.kubeconfig, helm_release.nginx_ingress ]
   name            = "argo-cd"
-  repository      = "https://github.com/argoproj/argo-cd"
+  repository      = "https://argoproj.github.io/argo-helm"
   chart           = "argo-cd"
   create_namespace= true
   namespace       = "tools"
