@@ -38,16 +38,13 @@ resource "aws_eks_node_group" "nodegroup" {
   }
   
 }
-resource "aws_eks_addon" "example" {
+resource "aws_eks_addon" "main" {
+  for_each     = var.addons
   cluster_name = aws_eks_cluster.main-cluster.name
-  addon_name   = "vpc-cni"
-  configuration_values= jsonencode( {
-    "enableNetworkPolicy": "true",
-    "nodeAgent": {
-        "enablePolicyEventLogs" : "true"
-    }
-})
+  addon_name   = each.key
+  configuration_values= jsonencode(each.value["configuration_values"])
 }
+
 #create a access point for the cluster 
 resource "aws_eks_access_entry" "access" {
   for_each          = var.access

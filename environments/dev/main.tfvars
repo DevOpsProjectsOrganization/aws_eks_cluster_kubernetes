@@ -36,5 +36,18 @@ eks={
                 policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
                 }
             }
+        addons = {
+            vpc-cni = {
+                configuration_values = {
+                    "enableNetworkPolicy": "true",
+                    "nodeAgent": {
+                        "enablePolicyEventLogs" : "true"
+                    }
+                }
+            }
+            eks-pod-identity-agent = {
+                configuration_values = {}
+            }
+        }
     }      
 }

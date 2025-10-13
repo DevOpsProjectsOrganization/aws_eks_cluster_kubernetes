@@ -14,5 +14,6 @@ module "eks" {
     subnet_ids      = each.value["subnet_ids"]
     env             = each.value["env"]
     access          = each.value["access"]
+    addons          = each.value["addons"]
 }
 
