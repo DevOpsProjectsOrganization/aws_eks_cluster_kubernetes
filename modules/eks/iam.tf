@@ -74,3 +74,44 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node.name
 }
+
+## Roles for Pods in kubernetes 
+resource "aws_iam_role" "external-dns" {
+  name = "pod-external-dns-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ]
+        Effect = "Allow"
+        Principal = {
+          Service = "pod.eks.amazonaws.com"
+        }
+      },
+    ]
+  })
+  inline_policy  {
+    name = "external-dns"
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = ["route53:e*"]
+          Effect = "Allow"
+          Resource = "*"
+        },
+      ]
+    })
+  }
+}
+
+resource "aws_eks_policy_association" "external-dns" {
+  cluster_name    = aws_eks_cluster.main-cluster.name
+  namespace       = "tools"
+  service_account = "external-dns"
+  role            = aws_iam_role.external-dns.arn
+}
+
