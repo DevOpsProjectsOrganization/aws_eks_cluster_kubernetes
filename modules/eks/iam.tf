@@ -99,7 +99,7 @@ resource "aws_iam_role" "external-dns" {
       Version = "2012-10-17"
       Statement = [
         {
-          Action = ["route53:e*"]
+          Action = ["route53:*"]
           Effect = "Allow"
           Resource = "*"
         },
@@ -109,7 +109,7 @@ resource "aws_iam_role" "external-dns" {
 }
 
 resource "aws_eks_policy_association" "external-dns" {
-  cluster_name    = aws_eks_cluster.main-cluster.name
+  cluster_name    = var.env
   namespace       = "tools"
   service_account = "external-dns"
   role            = aws_iam_role.external-dns.arn
