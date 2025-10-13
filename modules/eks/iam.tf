@@ -77,7 +77,7 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 
 ## Roles for Pods in kubernetes 
 resource "aws_iam_role" "external-dns" {
-  name = "pod-external-dns-role"
+  name = "${var.env}-pod-external-dns-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -88,19 +88,20 @@ resource "aws_iam_role" "external-dns" {
         ]
         Effect = "Allow"
         Principal = {
-          Service = "pod.eks.amazonaws.com"
+          Service = "pods.eks.amazonaws.com"
         }
       },
     ]
   })
-  inline_policy  {
+
+  inline_policy {
     name = "external-dns"
     policy = jsonencode({
       Version = "2012-10-17"
       Statement = [
         {
-          Action = ["route53:*"]
-          Effect = "Allow"
+          Action   = ["route53:*"]
+          Effect   = "Allow"
           Resource = "*"
         },
       ]
@@ -112,6 +113,5 @@ resource "aws_eks_pod_identity_association" "external-dns" {
   cluster_name    = var.env
   namespace       = "tools"
   service_account = "external-dns"
-  role_arn           = aws_iam_role.external-dns.arn
+  role_arn        = aws_iam_role.external-dns.arn
 }
-
