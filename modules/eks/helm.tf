@@ -1,6 +1,8 @@
 resource "null_resource" "kubeconfig" {
   depends_on = [aws_eks_cluster.main-cluster]
-
+  triggers   = {
+    always    = timestamp()
+  }
   provisioner "local-exec" {
     command = <<EOF
       aws eks update-kubeconfig --name ${var.env}
