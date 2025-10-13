@@ -37,4 +37,15 @@ resource "helm_release" "argocd" {
   chart           = "argo-cd"
   create_namespace= true
   namespace       = "tools"
+  set             = [
+    {
+      name        = "global.domain"
+      value       = "argocd-${var.env}.sdevops.shop"
+    }
+    {
+      name        = "server.ingress.enabled"
+      value       = "true"
+    }
+  ]
+
 }
