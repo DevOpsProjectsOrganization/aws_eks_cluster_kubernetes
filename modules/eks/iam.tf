@@ -112,6 +112,6 @@ resource "aws_eks_pod_identity_association" "external-dns" {
   cluster_name    = var.env
   namespace       = "tools"
   service_account = "external-dns"
-  role            = aws_iam_role.external-dns.arn
+  role_arn           = aws_iam_role.external-dns.arn
 }
 
