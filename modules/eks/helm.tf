@@ -41,7 +41,7 @@ resource "helm_release" "argocd" {
     {
       name        = "global.domain"
       value       = "argocd-${var.env}.sdevops.shop"
-    }
+    },
     {
       name        = "server.ingress.enabled"
       value       = "true"
