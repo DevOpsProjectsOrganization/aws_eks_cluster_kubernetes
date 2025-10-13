@@ -16,5 +16,5 @@ resource "helm_release" "nginx_ingress" {
   chart             = "ingress-nginx"
   create_namespace  = true
   namespace         = "tools"
-  values            = [file("$(path.module)/helm-values/ingress.yml")]
+  values            = [file("${path.module}/helm-values/ingress.yml")]
 }
