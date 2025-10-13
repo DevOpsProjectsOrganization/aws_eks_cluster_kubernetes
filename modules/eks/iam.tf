@@ -108,7 +108,7 @@ resource "aws_iam_role" "external-dns" {
   }
 }
 
-resource "aws_eks_policy_association" "external-dns" {
+resource "aws_eks_pod_identity_association" "external-dns" {
   cluster_name    = var.env
   namespace       = "tools"
   service_account = "external-dns"
