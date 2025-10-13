@@ -18,3 +18,12 @@ resource "helm_release" "nginx_ingress" {
   namespace         = "tools"
   values            = [file("${path.module}/helm-values/ingress.yml")]
 }
+
+resource "helm_release" "external-dns" {
+  depends_on        = [null_resource.kubeconfig]
+  name              = "external-dns"
+  repository        = "https://kubernetes-sigs.github.io/external-dns/"
+  chart             = "external-dns"
+  create_namespace  = true
+  namespace         = "tools"
+}
