@@ -9,4 +9,4 @@ jobs:
       - name: terraform apply
         run: make dev-apply
     env:
-    VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+    vault_token: ${{ secrets.vault_token }}
