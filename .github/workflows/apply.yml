@@ -5,7 +5,7 @@ jobs:
   apply:
     runs-on: [self-hosted, linux, x64]
     env:
-      vault_token: ${{ secrets.vault_token }}
+      vault_token: ${{ secrets.VAULT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: terraform apply
