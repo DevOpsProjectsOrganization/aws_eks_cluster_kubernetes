@@ -58,14 +58,14 @@ resource "null_resource" "external-secret-store"{
   name            = "external-secret-store"
   provisioner "local-exec" {
     command = << EOF
-    kubectl -f appy . <<EOK
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: vault-token
-      namespace : tools
-    data:
-      vault-token : base64encode(var.vault_token)
+      kubectl -f apply . <<EOK
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: vault-token
+        namespace : tools
+      data:
+        vault-token : base64encode(var.vault_token)
      
     EOK
     EOF
