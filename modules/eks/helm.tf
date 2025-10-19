@@ -58,7 +58,7 @@ resource "null_resource" "external-secret-store"{
   name            = "external-secret-store"
   provisioner "local-exec" {
     command = << EOF
-      kubectl -f apply . <<EOK
+      kubectl -f apply - <<EOK
       apiVersion: v1
       kind: Secret
       metadata:
