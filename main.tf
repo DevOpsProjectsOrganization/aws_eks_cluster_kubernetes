@@ -15,6 +15,6 @@ module "eks" {
     env             = each.value["env"]
     access          = each.value["access"]
     addons          = each.value["addons"]
-    token           = var.vault_token
+    vault_token     = var.vault_token
 }
 
