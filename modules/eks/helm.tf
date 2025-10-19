@@ -57,15 +57,15 @@ resource "null_resource" "external-secret-store"{
   depends_on      = [null_resource.external-secrets]
   name            = "external-secret-store"
   provisioner "local-exec" {
-    command = << EOF
-      kubectl -f apply - <<EOK
+    command = <<EOF
+      kubectl apply -f - <<EOK
       apiVersion: v1
       kind: Secret
       metadata:
         name: vault-token
-        namespace : tools
+        namespace: tools
       data:
-        vault-token : base64encode(var.vault_token)
+        token: ${base64encode(var.vault_token)}
      
     EOK
     EOF
