@@ -57,7 +57,7 @@ resource "null_resource" "external-secret-store"{
   depends_on      = [helm_release.external-secrets]
   provisioner "local-exec" {
     command = <<EOF
-      kubectl apply -f - <<EOK
+      kubectl apply -f - <<'EOK'
       apiVersion: v1
       kind: Secret
       metadata:
