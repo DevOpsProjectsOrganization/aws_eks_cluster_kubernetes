@@ -83,7 +83,7 @@ resource "null_resource" "external-secret-store"{
                 key: "token"
                 namespace: tools
      
-    EOK
+    'EOK'
     EOF
   }
 }
