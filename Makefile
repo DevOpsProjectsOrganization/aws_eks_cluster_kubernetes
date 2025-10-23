@@ -12,7 +12,7 @@ dev-apply: dev-init
 	
 dev-destroy: dev-init 
 	aws eks update-kubeconfig --name dev --region us-east-1 || true
-	terraform destroy -auto-approve -var-file=./environments/dev/main.tfvars -var "vault_token=${vault_token}"
+	terraform destroy -auto-approve -var-file=./environments/dev/main.tfvars -var vault_token=$(vault_token)
 
 tools-infra:
 	git pull

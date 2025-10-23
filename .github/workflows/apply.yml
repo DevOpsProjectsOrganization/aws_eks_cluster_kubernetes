@@ -8,6 +8,13 @@ jobs:
       vault_token: ${{ secrets.VAULT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: terraform apply
-        run: make dev-apply
-    
+      - name: Terraform Infra Apply
+        run: make dev-apply token=${vault_token}
+        env:
+          vault_token: ${{ secrets.VAULT_TOKEN }}
+      - name: Terraform Helm Apply
+        run: |
+          cd helm-charts
+          make dev-apply token=${vault_token}
+        env:
+          vault_token: ${{ secrets.VAULT_TOKEN }}
