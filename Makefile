@@ -8,7 +8,7 @@ dev-plan:
 	terraform plan -var-file=./environments/dev/main.tfvars 
 dev-apply: dev-init 
 	aws eks update-kubeconfig --name dev --region us-east-1 || true
-	terraform apply -auto-approve -var-file=./environments/dev/main.tfvars -var "vault_token=${vault_token}"
+	terraform apply -auto-approve -var-file=./environments/dev/main.tfvars -var vault_token=$(vault_token)
 	
 dev-destroy: dev-init 
 	aws eks update-kubeconfig --name dev --region us-east-1 || true

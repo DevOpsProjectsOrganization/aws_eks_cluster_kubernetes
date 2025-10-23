@@ -75,7 +75,7 @@ spec:
   provider:
     vault:
       server: "http://vault-internal.sdevops.shop:8200"
-      path: "roboshop-${var.env}"
+      path: "roboshop-dev"
       version: "v2"
       auth:
         tokenSecretRef:
