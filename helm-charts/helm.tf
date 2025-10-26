@@ -88,7 +88,7 @@ EOF
 
 # Prometheus stack installation
 
-resource "helm_release" "prometheuss" {
+resource "helm_release" "prometheus" {
   depends_on      = [null_resource.kubeconfig,helm_release.nginx_ingress]
   name            = "kube-prometheus-stack"
   repository      = "oci://ghcr.io/prometheus-community/charts"
