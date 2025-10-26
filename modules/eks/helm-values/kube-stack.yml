@@ -1,4 +1,4 @@
 prometheus:
   ingress:
     enabled : true
-  ingressClassName : "nginx"
+    ingressClassName : "nginx"
