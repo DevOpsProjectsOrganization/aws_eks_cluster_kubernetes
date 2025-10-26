@@ -33,7 +33,6 @@ resource "aws_iam_role" "external-dns" {
 }
 
 resource "aws_eks_pod_identity_association" "external-dns" {
-  depends_on      = [aws_iam_role.external-dns, null_resource.kubeconfig]
   cluster_name    = var.env
   namespace       = "tools"
   service_account = "external-dns"

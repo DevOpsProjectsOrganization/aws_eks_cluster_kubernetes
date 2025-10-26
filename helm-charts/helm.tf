@@ -1,5 +1,4 @@
 resource "null_resource" "kubeconfig" {
-  depends_on = [aws_eks_cluster.main-cluster]
   triggers   = {
     always    = timestamp()
   }
