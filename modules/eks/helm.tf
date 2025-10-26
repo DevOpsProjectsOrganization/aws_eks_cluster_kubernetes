@@ -86,3 +86,21 @@ EOK
 EOF
   }
 }
+
+# Prometheus stack installation
+
+resource "helm_release" "prometheuss" {
+  depends_on      = [null_resource.kubeconfig,helm_release.nginx_ingress]
+  name            = "kube-prometheus-stack"
+  repository      = "oci://ghcr.io/prometheus-community/charts"
+  chart           = "kube-prometheus-stack"
+  create_namespace= true
+  namespace       = "tools"
+  values          = [file("${path.module}/helm-values/kube-stack.yml")]
+   set_list    {
+      name        = "prometheus.ingress.hosts"
+      value       = "prometheus-${var.env}.sdevops.shop"
+    }
+
+}
+
