@@ -99,7 +99,7 @@ resource "helm_release" "prometheuss" {
   values          = [file("${path.module}/helm-values/kube-stack.yml")]
    set_list    {
       name        = "prometheus.ingress.hosts"
-      value       = "prometheus-${var.env}.sdevops.shop"
+      value       = ["prometheus-${var.env}.sdevops.shop"]
     }
 
 }
