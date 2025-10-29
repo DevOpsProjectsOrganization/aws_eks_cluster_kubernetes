@@ -2,20 +2,20 @@ prometheus:
   ingress:
     enabled : true
     ingressClassName : "nginx"
-  
-  prometheusSpec :
+
+prometheusSpec:
     additionalScrapeConfigs:
-    - job_name : ec2-nodes
-      ec2-sd-configs:
-      - region: "us-east-1"
-        port: 9100
-        filters: 
-          - name : "tag:monitor"
-            values : ["true", "yes"]
-      relabel-configs:
-      - source-labels: [__meta_ec2_instance_id]
-        name : instance_id
-      - source-labels: [__meta_ec2_instance_type]
-        name : instance_type
-      - source-labels: [__meta_ec2_tag_Name]
-        name : ec2_name
+      - job_name: ec2-nodes
+        ec2_sd_configs:
+          - region: us-east-1
+            port: 9100
+            filters:
+              - name: "tag:monitor"
+                values: ["true", "yes"]
+        relabel_configs:
+          - source_labels: [__meta_ec2_instance_id]
+            target_label: instance_id
+          - source_labels: [__meta_ec2_instance_type]
+            target_label: instance_type
+          - source_labels: [__meta_ec2_tag_Name]
+            target_label: ec2_name
