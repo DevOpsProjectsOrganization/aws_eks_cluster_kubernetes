@@ -14,8 +14,9 @@ jobs:
           vault_token: ${{ secrets.VAULT_TOKEN }}
       - name: Terraform Helm Apply
         run: |
-          cd helm-charts
+          # cd helm-charts
           make dev-apply token=${vault_token}
+        working-directory: ./helm-charts
         env:
           vault_token: ${{ secrets.VAULT_TOKEN }}
      
