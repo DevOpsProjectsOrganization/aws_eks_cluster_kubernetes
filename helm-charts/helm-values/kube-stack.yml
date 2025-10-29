@@ -9,7 +9,8 @@ prometheus:
       ec2-sd-configs:
       - region: "us-east-1"
         filters: 
-          - "tag : monitor=true"
+          - name : "tag : monitor"
+            values : ["true", "yes"]
       relabel-configs:
       - source-labels: [__meta_ec2_instance_id]
         name : instance_id
