@@ -47,7 +47,7 @@ resource "null_resource" "ansible"{
             host     = aws_instance.my_instance.private_ip
         }
         inline = [
-            "ansible-pull -i localhost, -U https://github.com/DevOpsProjectsOrganization/ecommerce_ansible roboshop.yml -e env=${var.env} -e role=${var.name} "
+            "ansible-pull -i localhost, -U https://github.com/DevOpsProjectsOrganization/ecommerce_ansible roboshop.yml -e env=${var.env} -e role=${var.name} | sudo tee /opt/ansible.log"
         ]
        
     }
