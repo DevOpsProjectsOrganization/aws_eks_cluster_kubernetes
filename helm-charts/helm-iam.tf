@@ -66,7 +66,10 @@ resource "aws_iam_role" "prometheus-server" {
         {
           Action   = [
             "ec2:DescribeInstances",
-            "ec2:DescribeInstanceStatus"
+            "ec2:DescribeInstanceStatus",
+            "ec2:DescribeTags",
+            "ec2:DescribeRegions",
+            "ec2:DescribeNetworkInterfaces"
             ]
           Effect   = "Allow"
           Resource = "*"
