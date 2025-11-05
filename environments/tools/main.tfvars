@@ -13,7 +13,7 @@ tools = {
     elk = {
         instance_type = "m8i.xlarge"
         spot          = true
-        spot_max_price= 0.0999
+        spot_max_price= 0.19
     }
 }
 ecr = {
