@@ -8,8 +8,8 @@ jobs:
       - uses: actions/checkout@v4
       - name : helm  destroy
         run : |
-          cd helm-charts
           make dev-destroy vault_token=${vault_token}
+        working-directory: ./helm-charts
         env:
           vault_token: ${{ secrets.VAULT_TOKEN }}
       - name: terraform infra destroy
