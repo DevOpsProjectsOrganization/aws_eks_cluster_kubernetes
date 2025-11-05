@@ -25,7 +25,7 @@ resource "aws_instance" "spot_instance" {
         monitor     = "true"
     }
     root_block_device {
-        volume_size = 20 
+        volume_size = 30 
     }
     instance_market_options {
         market_type = "spot"
