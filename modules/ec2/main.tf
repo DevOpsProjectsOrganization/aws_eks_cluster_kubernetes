@@ -68,7 +68,7 @@ resource "null_resource" "ansible"{
             type     = "ssh"
             user     = "ec2-user"
             password = "DevOps321"
-            host     = aws_instance.my_instance.private_ip
+            host     = var.spot ? aws_instance.spot_instance[0].private_ip : aws_instance..my_instance[0].private_ip
         }
         inline = [
             "ansible-pull -i localhost, -U https://github.com/DevOpsProjectsOrganization/ecommerce_ansible roboshop.yml -e env=${var.env} -e role=${var.name} | sudo tee /opt/ansible.log"
