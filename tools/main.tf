@@ -8,6 +8,8 @@ module "tools" {
     name            = each.key
     iam_policy      = try(each.value["iam_policy"], [])
     env             = var.env
+    spot            = try(each.value["spot"], false)
+    spot_max_price  = try(each.value["spot_max_price"], 0)
 }
 
 resource "aws_ecr_repository" "main" {

@@ -8,7 +8,12 @@ tools = {
       iam_policy    = ["eks:DescribeCluster","eks:ListClusters","eks:ListFargateProfiles","eks:ListNodegroups","*"]
     }
     vault = {
-           instance_type = "t3.small"
+        instance_type = "t3.small"
+    }
+    elk = {
+        instance_type = "m8i.xlarge"
+        spot          = true
+        spot_max_price= 0.0999
     }
 }
 ecr = {

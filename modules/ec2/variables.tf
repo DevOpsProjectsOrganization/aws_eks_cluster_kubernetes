@@ -7,3 +7,9 @@ variable "name" {}
 variable "iam_policy" {
   default = []
 }
+variable "spot" {
+  default = false
+}
+variable "spot_max_price" {
+  default = 0
+}

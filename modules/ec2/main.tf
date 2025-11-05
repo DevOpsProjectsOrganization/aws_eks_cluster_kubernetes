@@ -1,7 +1,10 @@
 resource "aws_instance" "my_instance" {
-    ami             = var.ami
-    instance_type   =  var.instance_type
-    tags            = {
+    count                   = var.spot ? 0 : 1
+    ami                     = var.ami
+    instance_type           =  var.instance_type
+    vpc_security_group_ids  = [data.aws_security_group.selected.id]
+    iam_instance_profile    = aws_iam_instance_profile.main.name
+    tags                    = {
         Name        = local.name
         monitor     = "true"
     }
@@ -9,8 +12,29 @@ resource "aws_instance" "my_instance" {
         volume_size = 90 
         volume_type = "gp3"
     }
-    vpc_security_group_ids= [data.aws_security_group.selected.id]
-    iam_instance_profile   = aws_iam_instance_profile.main.name
+}
+
+resource "aws_instance" "spot_instance" {
+    count                   = var.spot ? 1 : 0
+    ami                     = var.ami
+    instance_type           = var.instance_type
+    vpc_security_group_ids  = [data.aws_security_group.selected.id]
+    iam_instance_profile    = aws_iam_instance_profile.main.name
+    tags                    = {
+        Name        = local.name
+        monitor     = "true"
+    }
+    root_block_device {
+        volume_size = 20 
+    }
+    instance_market_options {
+        market_type = "spot"
+        spot_options {
+            max_price                       = var.spot_max_price
+            instance_interruption_behavior  = "stop"
+            spot_instance_type              = "persistent"
+    }
+  }
 }
 
 resource "aws_route53_record" "my_private_record"{
@@ -18,7 +42,7 @@ resource "aws_route53_record" "my_private_record"{
     name    = local.toolName
     type    = "A"
     ttl     = 300
-    records = [aws_instance.my_instance.private_ip]
+    records = var.spot ? [aws_instance.spot_instance[0].private_ip] :[aws_instance.my_instance[0].private_ip]
 }
 
 resource "aws_route53_record" "my_public_record"{
@@ -27,7 +51,7 @@ resource "aws_route53_record" "my_public_record"{
     name    = local.toolPublicName
     type    = "A"
     ttl     = 300
-    records = [aws_instance.my_instance.public_ip]
+    records = var.spot ? [aws_instance.spot_instance[0].public_ip] :[aws_instance.my_instance[0].public_ip]
 }
 
 resource "null_resource" "ansible"{
