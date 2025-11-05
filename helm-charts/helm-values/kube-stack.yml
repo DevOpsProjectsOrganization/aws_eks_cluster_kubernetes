@@ -5,9 +5,9 @@ prometheus:
 
   prometheusSpec:
     additionalScrapeConfigs:
-      #- job_name: ingress
-       # static_configs:
-        #  - targets: ["nginx-ingress-controller-ingress-nginx-controller-metrics:10254"]
+      - job_name: ingress
+        static_configs:
+          - targets: ["nginx-ingress-controller-ingress-nginx-controller-metrics.tools.svc.cluster.local:10254"]
       - job_name: ec2-nodes
         ec2_sd_configs:
           - region: us-east-1
