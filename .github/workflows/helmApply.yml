@@ -1,0 +1,16 @@
+name : Apply
+on: 
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: [self-hosted, linux, x64]
+    env:
+      vault_token: ${{ secrets.VAULT_TOKEN }}
+    steps:
+      - name: Terraform Helm Apply
+        run: |
+          make dev-apply token=${vault_token}
+        working-directory: ./helm-charts
+        env:
+          vault_token: ${{ secrets.VAULT_TOKEN }}
+     
