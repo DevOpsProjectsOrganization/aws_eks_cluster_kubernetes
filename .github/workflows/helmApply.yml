@@ -1,4 +1,4 @@
-name : Apply
+name : Helm Apply
 on: 
   workflow_dispatch:
 jobs:
