@@ -5,6 +5,7 @@ resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
     command = <<EOF
       aws eks update-kubeconfig --name ${var.env}
+      kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
     EOF
   }
 
